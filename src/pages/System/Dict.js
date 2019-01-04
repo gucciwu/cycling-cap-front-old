@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'dva';
-import RestCrud from "../../components/Rest/index";
 import { CharField, IntegerField, TextField } from '../../components/Entity/Field';
 import Entity from '../../components/Entity/index';
 import { entities } from '../../../config/settings';
+import RestCrud from '../../components/Rest';
 
 export class DictionaryEntity extends Entity {
   constructor() {
@@ -25,6 +25,7 @@ export class DictionaryEntity extends Entity {
     this.dictValue = new TextField({ maxLength: 500, allowBlank: false, verboseName: '值' });
     this.dictRemark = new TextField({ maxLength: 500, verboseName: '备注' });
   }
+
   verboseName = instance => {
     return `${instance.dictEntry} - ${instance.dictKey}`;
   };
@@ -43,7 +44,7 @@ export class DictionaryEntity extends Entity {
   creating: loading.effects['dictionary/create'],
   updating: loading.effects['dictionary/update'],
 }))
-export default class Dictionaries extends React.Component {
+class Dictionaries extends React.Component {
   render() {
     const {
       dictionary,
@@ -69,3 +70,5 @@ export default class Dictionaries extends React.Component {
     );
   }
 }
+
+export default Dictionaries

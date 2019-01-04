@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { Layout, Icon } from 'antd';
 import GlobalFooter from '@/components/GlobalFooter';
+import { generalSettings } from '../../config/settings';
 
 const { Footer } = Layout;
 const FooterView = () => (
@@ -8,27 +9,27 @@ const FooterView = () => (
     <GlobalFooter
       links={[
         {
-          key: 'Pro 首页',
-          title: 'Pro 首页',
-          href: 'https://pro.ant.design',
+          key: 'company home page',
+          title: '首页',
+          href: generalSettings.website,
           blankTarget: true,
         },
         {
           key: 'github',
           title: <Icon type="github" />,
-          href: 'https://github.com/ant-design/ant-design-pro',
+          href: generalSettings.website,
           blankTarget: true,
         },
         {
-          key: 'Ant Design',
-          title: 'Ant Design',
-          href: 'https://ant.design',
+          key: 'company name',
+          title: generalSettings.companyName,
+          href: generalSettings.website,
           blankTarget: true,
         },
       ]}
       copyright={
         <Fragment>
-          Copyright <Icon type="copyright" /> 2018 蚂蚁金服体验技术部出品
+          Copyright <Icon type="copyright" /> {generalSettings.copyrightYear} {generalSettings.companyName}
         </Fragment>
       }
     />

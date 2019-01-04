@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import React from 'react';
 import { message } from 'antd';
-import { apiSettings, modules } from '../../config/settings';
+import { apiSettings, authenticationSettings, modules, roles } from '../../config/settings';
 
 
 export function getStore() {
@@ -189,4 +189,8 @@ export function convertKey2Camel(obj) {
     ret[underline2Camel(index)] = obj[index];
   });
   return ret;
+}
+
+export function getCurrentUserRole(currentUser) {
+  return !isEmpty(currentUser) && currentUser.loginId ? roles.ADMINISTRATOR : authenticationSettings.defaultRole;
 }

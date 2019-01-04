@@ -6,6 +6,7 @@ import GlobalFooter from '@/components/GlobalFooter';
 import SelectLang from '@/components/SelectLang';
 import styles from './UserLayout.less';
 import logo from '../assets/logo.svg';
+import { generalSettings } from '../../config/settings';
 
 const links = [
   {
@@ -27,7 +28,7 @@ const links = [
 
 const copyright = (
   <Fragment>
-    Copyright <Icon type="copyright" /> 2018 蚂蚁金服体验技术部出品
+    Copyright <Icon type="copyright" /> {generalSettings.copyrightYear} {generalSettings.companyName}
   </Fragment>
 );
 
@@ -56,10 +57,10 @@ class UserLayout extends React.PureComponent {
             <div className={styles.header}>
               <Link to="/">
                 <img alt="logo" className={styles.logo} src={logo} />
-                <span className={styles.title}>Ant Design</span>
+                <span className={styles.title}>{ generalSettings.appShortName }</span>
               </Link>
             </div>
-            <div className={styles.desc}>Ant Design 是西湖区最具影响力的 Web 设计规范</div>
+            <div className={styles.desc}>{ generalSettings.appDescription }</div>
           </div>
           {children}
         </div>

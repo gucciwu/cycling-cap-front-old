@@ -1,6 +1,7 @@
 import { query as queryUsers, queryCurrent } from '@/services/user';
-import { fakeUser, loginSettings } from '../../config/settings';
-import { isEmpty } from '../utils/utility';
+import { authenticationSettings, fakeUser, loginSettings } from '../../config/settings';
+import { getCurrentUserRole, isEmpty } from '../utils/utility';
+import { setAuthority, setJwtToken } from '../utils/authority';
 
 export default {
   namespace: 'user',
@@ -39,9 +40,21 @@ export default {
       };
     },
     saveCurrentUser(state, action) {
+      let role = authenticationSettings.defaultRole;
+      let user = action.payload;
+      if (action.payload) {
+        if (authenticationSettings.authenticationMethod === 'jwt' && action.payload.jwt) {
+          setJwtToken(action.payload.jwt);
+        }
+        user = action.payload.user || user;
+        role = action.payload.role || authenticationSettings.defaultRole;
+      }
+      role = getCurrentUserRole(user) || authenticationSettings.defaultRole;
+      setAuthority(role);
       return {
         ...state,
-        currentUser: action.payload || {},
+        currentUser: user,
+        currentUserRole: role,
       };
     },
     changeNotifyCount(state, action) {
