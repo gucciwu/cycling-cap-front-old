@@ -1,4 +1,6 @@
 import { query as queryUsers, queryCurrent } from '@/services/user';
+import { fakeUser, loginSettings } from '../../config/settings';
+import { isEmpty } from '../utils/utility';
 
 export default {
   namespace: 'user',
@@ -17,10 +19,14 @@ export default {
       });
     },
     *fetchCurrent(_, { call, put }) {
-      const response = yield call(queryCurrent);
+      let currentUser = fakeUser;
+      if (!loginSettings.ignoreLogin) {
+        const response = yield call(queryCurrent);
+        currentUser = isEmpty(response) ? fakeUser : response;
+      }
       yield put({
         type: 'saveCurrentUser',
-        payload: response,
+        payload: currentUser,
       });
     },
   },

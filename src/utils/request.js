@@ -3,6 +3,8 @@ import { notification } from 'antd';
 import router from 'umi/router';
 import hash from 'hash.js';
 import { isAntdPro } from './utils';
+import { isHttpPrefix } from './utility';
+import { apiSettings } from '../../config/settings';
 
 const codeMessage = {
   200: '服务器成功返回请求的数据。',
@@ -64,6 +66,9 @@ const cachedSave = (response, hashcode) => {
  * @return {object}           An object containing either "data" or "err"
  */
 export default function request(url, option) {
+  if (!isHttpPrefix(url)) {
+    url = apiSettings.apiUrl + url;
+  }
   const options = {
     expirys: isAntdPro(),
     ...option,
@@ -148,7 +153,7 @@ export default function request(url, option) {
         router.push('/exception/500');
         return;
       }
-      if (status >= 404 && status < 422) {
+      if (status > 404 && status < 422) {
         router.push('/exception/404');
       }
     });
