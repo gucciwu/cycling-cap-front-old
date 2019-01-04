@@ -1,3 +1,5 @@
+import { BooleanField, CharField, DateTimeField, IntegerField } from '../src/components/Entity/Field';
+
 export const roles = {
   GUEST: 'guest',
   USER: 'user',
@@ -102,35 +104,81 @@ export const authenticationSettings = {
 };
 
 export const entities = {
-  historyAction:  {
-    namespace : 'historyAction',
-    displayName : 'Action',
-    url : '/api/history-actions',
-    listDataWrap : 'historyActions',
+  historyAction: {
+    namespace: 'historyAction',
+    displayName: 'Action',
+    url: '/api/history-actions',
+    listDataWrap: 'historyActions',
   },
-  historyTarget:  {
-    namespace : 'historyTarget',
-    displayName : 'Target',
-    url : '/api/history-targets',
-    listDataWrap : 'historyTargets',
+  historyTarget: {
+    namespace: 'historyTarget',
+    displayName: 'Target',
+    url: '/api/history-targets',
+    listDataWrap: 'historyTargets',
   },
-  historyLog:  {
-    namespace : 'historyLog',
-    displayName : 'Log',
-    url : '/api/history-logs',
-    listDataWrap : 'historyLogs',
+  historyLog: {
+    namespace: 'historyLog',
+    displayName: 'Log',
+    url: '/api/history-logs',
+    listDataWrap: 'historyLogs',
   },
-  user:  {
-    namespace : 'user',
-    displayName : 'User',
-    url : '/api/users',
-    listDataWrap : 'users',
+  user: {
+    namespace: 'user',
+    displayName: 'User',
+    url: '/api/users',
+    listDataWrap: 'users',
   },
-  dictionary:  {
-    namespace : 'dictionary',
-    displayName : 'Dictionary',
-    url : '/api/dictionaries',
-    listDataWrap : 'dictionaries',
+  dictionary: {
+    namespace: 'dictionary',
+    displayName: 'Dictionary',
+    url: '/api/dictionaries',
+    listDataWrap: 'dictionaries',
+  },
+};
+
+export const entitySettings = {
+  defaultListDisplay: [
+    'modifiedBy',
+    'modifiedTime',
+    'createdBy',
+    'createdTime',
+  ],
+  defaultFields: [
+    'id',
+    'modifiedBy',
+    'modifiedTime',
+    'createdBy',
+    'createdTime',
+    'deleted',
+  ],
+  baseFields: {
+    id: new IntegerField({ verboseName: 'ID', editable: false, creatable: false, hide: true }),
+    modifiedBy: new CharField({ maxLength: 200, verboseName: '最后修改人', editable: false, creatable: false, hide: true }),
+    modifiedTime: new DateTimeField({
+      auto_now: true,
+      auto_now_add: true,
+      verboseName: '最后修改时间',
+      editable: false,
+      creatable: false,
+      hide: true,
+    }),
+    createdBy: new CharField({ maxLength: 200, verboseName: '创建人', editable: false, creatable: false, hide: true }),
+    createdTime: new DateTimeField({
+      auto_now: true,
+      auto_now_add: true,
+      verboseName: '创建时间',
+      editable: false,
+      creatable: false,
+      hide: true,
+    }),
+    deleted: new BooleanField({
+      defaultValue: false,
+      verboseName: '已删除',
+      editable: false,
+      hide: true,
+      creatable: false,
+    }),
+
   },
 };
 
@@ -143,45 +191,45 @@ export const fakeUser = {
   title: '交互专家',
   group: '蚂蚁金服－某某某事业群－某某平台部－某某技术部－UED',
   tags: [
-  {
-    key: '0',
-    label: '很有想法的',
-  },
-  {
-    key: '1',
-    label: '专注设计',
-  },
-  {
-    key: '2',
-    label: '辣~',
-  },
-  {
-    key: '3',
-    label: '大长腿',
-  },
-  {
-    key: '4',
-    label: '川妹子',
-  },
-  {
-    key: '5',
-    label: '海纳百川',
-  },
-],
+    {
+      key: '0',
+      label: '很有想法的',
+    },
+    {
+      key: '1',
+      label: '专注设计',
+    },
+    {
+      key: '2',
+      label: '辣~',
+    },
+    {
+      key: '3',
+      label: '大长腿',
+    },
+    {
+      key: '4',
+      label: '川妹子',
+    },
+    {
+      key: '5',
+      label: '海纳百川',
+    },
+  ],
   notifyCount: 0,
   unreadCount: 0,
   country: 'China',
   geographic: {
-  province: {
-    label: '浙江省',
+    province: {
+      label: '浙江省',
       key: '330000',
-  },
-  city: {
-    label: '杭州市',
+    },
+    city: {
+      label: '杭州市',
       key: '330100',
+    },
   },
-},
   address: '西湖区工专路 77 号',
-    phone: '0752-268888888',
+  phone: '0752-268888888',
 };
 

@@ -29,11 +29,11 @@ export class DictionaryEntity extends Entity {
   verboseName = instance => {
     return `${instance.dictEntry} - ${instance.dictKey}`;
   };
-  fields = ['id', 'dictEntry', 'dictKey', 'dictValue', 'dictRemark'];
-  listSort = ['dictEntry', 'dictKey', 'dictValue'];
-  listDisplay = ['dictEntry', 'dictKey', 'dictValue'];
-  listFilter = ['dictEntry', 'dictKey', 'dictValue'];
-  detailDisplay = ['id', 'dictEntry', 'dictKey', 'dictValue', 'dictRemark'];
+  // fields = ['id', 'dictEntry', 'dictKey', 'dictValue', 'dictRemark'];
+  // listSort = ['dictEntry', 'dictKey', 'dictValue'];
+  // listDisplay = ['dictEntry', 'dictKey', 'dictValue'];
+  // listFilter = ['dictEntry', 'dictKey', 'dictValue'];
+  // detailDisplay = ['id', 'dictEntry', 'dictKey', 'dictValue', 'dictRemark'];
 }
 
 @connect(({ dictionary, loading }) => ({
