@@ -1,5 +1,3 @@
-import { BooleanField, CharField, DateTimeField, IntegerField } from '../src/components/Entity/Field';
-
 export const roles = {
   GUEST: 'guest',
   USER: 'user',
@@ -137,49 +135,8 @@ export const entities = {
 };
 
 export const entitySettings = {
-  defaultListDisplay: [
-    'modifiedBy',
-    'modifiedTime',
-    'createdBy',
-    'createdTime',
-  ],
-  defaultFields: [
-    'id',
-    'modifiedBy',
-    'modifiedTime',
-    'createdBy',
-    'createdTime',
-    'deleted',
-  ],
-  baseFields: {
-    id: new IntegerField({ verboseName: 'ID', editable: false, creatable: false, hide: true }),
-    modifiedBy: new CharField({ maxLength: 200, verboseName: '最后修改人', editable: false, creatable: false, hide: true }),
-    modifiedTime: new DateTimeField({
-      auto_now: true,
-      auto_now_add: true,
-      verboseName: '最后修改时间',
-      editable: false,
-      creatable: false,
-      hide: true,
-    }),
-    createdBy: new CharField({ maxLength: 200, verboseName: '创建人', editable: false, creatable: false, hide: true }),
-    createdTime: new DateTimeField({
-      auto_now: true,
-      auto_now_add: true,
-      verboseName: '创建时间',
-      editable: false,
-      creatable: false,
-      hide: true,
-    }),
-    deleted: new BooleanField({
-      defaultValue: false,
-      verboseName: '已删除',
-      editable: false,
-      hide: true,
-      creatable: false,
-    }),
-
-  },
+  defaultListDisplay: ['modifiedBy', 'modifiedTime', 'createdBy', 'createdTime'],
+  defaultFields: ['id', 'modifiedBy', 'modifiedTime', 'createdBy', 'createdTime', 'deleted'],
 };
 
 export const fakeUser = {
@@ -232,4 +189,3 @@ export const fakeUser = {
   address: '西湖区工专路 77 号',
   phone: '0752-268888888',
 };
-
