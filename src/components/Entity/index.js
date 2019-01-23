@@ -311,9 +311,9 @@ export default class Entity {
               <Input
                 placeholder="keyword"
                 onChange={e => onFilter.onInputChange(e.target.value, column)}
-                onPressEnter={() => onFilter.onSearch(column)}
+                onPressEnter={() => onFilter.onSearch()}
               />
-              <Button type="primary" onClick={() => onFilter.onSearch(column)}>
+              <Button type="primary" onClick={() => onFilter.onSearch()}>
                 搜索
               </Button>
             </div>

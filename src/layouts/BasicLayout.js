@@ -17,7 +17,7 @@ import Context from './MenuContext';
 import Exception403 from '../pages/Exception/403';
 import PageLoading from '@/components/PageLoading';
 import SiderMenu from '@/components/SiderMenu';
-
+import { title } from '../defaultSettings';
 import styles from './BasicLayout.less';
 import { generalSettings } from '../../config/settings';
 
@@ -100,7 +100,7 @@ class BasicLayout extends React.PureComponent {
   getRouterAuthority = (pathname, routeData) => {
     let routeAuthority = ['noAuthority'];
     const getAuthority = (key, routes) => {
-      routes.map(route => {
+      routes.forEach(route => {
         if (route.path && pathToRegexp(route.path).test(key)) {
           routeAuthority = route.authority;
         } else if (route.routes) {

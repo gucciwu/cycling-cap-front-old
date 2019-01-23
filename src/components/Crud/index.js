@@ -22,7 +22,7 @@ export default class Crud extends PureComponent {
     sorter: {},
   };
 
-  componentWillMount() {
+  componentDidMount() {
     this.refresh();
   }
 
