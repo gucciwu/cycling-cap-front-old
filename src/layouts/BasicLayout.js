@@ -52,7 +52,7 @@ const query = {
   },
 };
 
-class BasicLayout extends React.PureComponent {
+class BasicLayout extends React.Component {
   constructor(props) {
     super(props);
     this.getPageTitle = memoizeOne(this.getPageTitle);
