@@ -51,7 +51,7 @@ export const generalSettings = {
   },
   pageSize: 10,
   showDemoTemplateMenu: true, // Include ant design pro build in templates and standard component demos
-  enableCache: true,
+  enableCache: false,
 };
 
 export const languageSettings = {
@@ -120,8 +120,8 @@ export const entities = {
     url: '/api/history-logs',
     listDataWrap: 'historyLogs',
   },
-  user: {
-    namespace: 'user',
+  jessUser: {
+    namespace: 'jessUser',
     displayName: 'User',
     url: '/api/users',
     listDataWrap: 'users',

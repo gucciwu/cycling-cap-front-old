@@ -233,6 +233,7 @@ export default function(entity) {
         };
       },
       updateRecord(state, action) {
+        console.log(action);
         const newList = state.list.map(item => {
           if (item.id === action.payload.id) {
             return action.payload;

@@ -43,6 +43,12 @@ export default [
             icon: 'book',
             component: './System/Dict',
           },
+          {
+            path: '/system/user',
+            name: 'User',
+            icon: 'user',
+            component: './System/User',
+          },
         ],
       },
       // // dashboard

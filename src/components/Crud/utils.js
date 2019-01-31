@@ -3,10 +3,9 @@ import moment from 'moment';
 import { BooleanField, DateField, DateTimeField, TimeField } from '../Entity/Field';
 import { generalSettings } from '../../../config/settings';
 
-
 export default function cleanValues(original = null, newOne, entity) {
   const ret = {};
-  entity._fields.map((item) => {
+  entity.getAllFields().map(item => {
     const field = entity[item];
     let newValue = newOne[item];
     if (field instanceof BooleanField) {
