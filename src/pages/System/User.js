@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'dva';
-import { CharField, EmailField, ImageField, IntegerField } from '../../components/Entity/Field';
+import { CharField, DateTimeField, EmailField, ImageField, IntegerField } from '../../components/Entity/Field';
 import Entity from '../../components/Entity/index';
 import { entities } from '../../../config/settings';
 import RestCrud from '../../components/Rest';
@@ -19,14 +19,14 @@ export class JessUserEntity extends Entity {
   avatar = new ImageField({ verboseName: '头像' });
   email = new EmailField({ allowBlank: false, verboseName: 'Email' });
   status = new IntegerField({ allowBlank: false, verboseName: '状态'});
-
+  modifiedTime = new DateTimeField({verboseName: '最后修改时间', autoNow: true});
   verboseName = (instance) => {
     return `${instance.name} - (${instance.loginId})`;
   };
-  fields = ['id', 'loginId', 'name', 'sex', 'mobile', 'phone', 'address', 'email', 'avatar', 'status'];
-  listSort = ['loginId', 'name', 'email', 'mobile', 'phone', 'address', 'status'];
-  listDisplay = ['loginId', 'name', 'sex', 'mobile', 'phone', 'address', 'email'];
-  listFilter = ['loginId', 'name', 'email', 'status'];
+  fields = ['id', 'loginId', 'name', 'sex', 'mobile', 'phone', 'address', 'email', 'avatar', 'status', 'modifiedTime'];
+  listSort = ['loginId', 'name', 'email', 'mobile', 'phone', 'address', 'status', 'modifiedTime'];
+  listDisplay = ['loginId', 'name', 'sex', 'mobile', 'phone', 'address', 'email', 'modifiedTime'];
+  listFilter = ['loginId', 'name', 'email', 'status', 'modifiedTime'];
 }
 
 @connect(({ jessUser, loading }) => ({

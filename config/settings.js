@@ -61,6 +61,7 @@ export const languageSettings = {
 
 export const apiSettings = {
   apiUrl: 'http://127.0.0.1:9080',
+  apiDictionaryUrl: '/api/dictionaries',
   timeout: 0, // 0 - unlimited
   enableCors: true,
   corsTargets: '*',

@@ -1,8 +1,8 @@
 /* eslint-disable no-underscore-dangle */
 import { stringify } from 'qs';
 import request from '../../utils/request';
-import store from '../../index';
-import { apiSettings } from '../../settings/settings';
+import { apiSettings } from '../../../config/settings';
+import { getStore } from '../../utils/utility';
 
 export default class DataSource {
   constructor(options) {
@@ -19,6 +19,7 @@ export default class DataSource {
     let ret = [];
     const { parameters, dvaModel, url, parser } = this;
     if (dvaModel && dvaModel.namespace && typeof dvaModel.namespace === 'string') {
+      const store = getStore();
       ret = store.getState()[dvaModel.namespace][dvaModel.state];
       if (dvaModel.force || !Array.isArray(ret) || ret.length === 0) {
         store.dispatch({

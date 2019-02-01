@@ -198,3 +198,14 @@ export class ForeignKeyField extends Field {
     this.entity = options.entity ? options.entity : null;
   }
 }
+
+export class DictionaryField extends Field {
+  constructor(options) {
+    super(options);
+    this.namespace = options.namespace ? options.namespace : null;
+    this.renderer = options.renderer ? options.renderer : DictionaryField;
+    this.parsers = options.parsers ? options.parsers : {};
+    this.optionRender = options.optionRender ? options.optionRender : null;
+    this.entity = options.entity ? options.entity : null;
+  }
+}

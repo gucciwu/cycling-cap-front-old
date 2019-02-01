@@ -7,6 +7,7 @@ import CrudDetail from './Detail';
 import { DateField, DateTimeField } from '../Entity/Field';
 import { CreateModelForm } from './CreatModelForm';
 import cleanValues from './utils';
+import { generalSettings } from '../../../config/settings';
 
 
 export default class Crud extends PureComponent {
@@ -148,8 +149,8 @@ export default class Crud extends PureComponent {
           search: {
             changed: true,
             keyword: {
-              start: value[0].toString(),
-              end: value[1].toString(),
+              start: value[0].format(column instanceof DateTimeField ? generalSettings.dateTimeFormat : generalSettings.dateFormat).toString(),
+              end: value[1].format(column instanceof DateTimeField ? generalSettings.dateTimeFormat : generalSettings.dateFormat).toString(),
             },
             field: column.property,
           },
