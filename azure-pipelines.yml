@@ -9,8 +9,8 @@ trigger:
 
 resources:
   repositories:
-  - repository: self
-    fetchDepth: 1
+    - repository: self
+      fetchDepth: 1
 
 jobs:
   - job: lintAndBuild
