@@ -1,4 +1,4 @@
-import pyreneesFactory from '../../../utils/restDvaModelFactory4SpringDataRestWithJpa';
+import pyreneesFactory from '../../../utils/restDvaModelFactory4DjangoRestFramework';
 import { JessUserEntity } from '../User';
 import { entities } from '../../../../config/settings';
 
