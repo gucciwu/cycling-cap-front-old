@@ -1,5 +1,7 @@
 export default {
   'menu.home': 'Home',
+  'menu.tour': 'Tour',
+  'menu.tour.plan': 'Plan',
   'menu.dashboard': 'Dashboard',
   'menu.dashboard.analysis': 'Analysis',
   'menu.dashboard.monitor': 'Monitor',

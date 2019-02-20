@@ -21,6 +21,18 @@ export default [
     routes: [
       { path: '/', redirect: generalSettings.homePage },
       {
+        path: '/tour',
+        name: 'tour',
+        icon: 'map',
+        routes: [
+          {
+            path: '/tour/plan',
+            name: 'plan',
+            component: './Tour/Plan',
+          },
+        ],
+      },
+      {
         path: '/convert',
         name: 'Convert',
         icon: 'interation',

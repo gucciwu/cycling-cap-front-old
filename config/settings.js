@@ -140,6 +140,10 @@ export const entitySettings = {
   defaultFields: ['id', 'modifiedBy', 'modifiedTime', 'createdBy', 'createdTime', 'deleted'],
 };
 
+export const serviceSettings = {
+  baiduAccessKey: 'fV1GGhTs7WEuLmUpHL8VU4rwkRwkxz80',
+};
+
 export const fakeUser = {
   name: 'Alps Fake',
   avatar: 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png',

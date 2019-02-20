@@ -81,6 +81,8 @@ export default {
     ...(NODE_ENV === 'production'
       ? { react: 'React', 'react-dom': 'ReactDOM', bizcharts: 'BizCharts' }
       : {}),
+    'BMap':'BMap', // Baidu map instance
+    'BMapLib':'BMapLib',
   },
   // proxy: {
   //   '/server/api/': {
