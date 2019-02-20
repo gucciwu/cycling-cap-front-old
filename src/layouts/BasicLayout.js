@@ -1,14 +1,11 @@
 import React, { Suspense } from 'react';
 import { Layout } from 'antd';
 import DocumentTitle from 'react-document-title';
-import isEqual from 'lodash/isEqual';
-import memoizeOne from 'memoize-one';
 import { connect } from 'dva';
 import { ContainerQuery } from 'react-container-query';
 import classNames from 'classnames';
 import pathToRegexp from 'path-to-regexp';
 import Media from 'react-media';
-import { formatMessage } from 'umi/locale';
 import Authorized from '@/utils/Authorized';
 import logo from '../assets/logo.svg';
 import Footer from './Footer';
@@ -17,10 +14,8 @@ import Context from './MenuContext';
 import Exception403 from '../pages/Exception/403';
 import PageLoading from '@/components/PageLoading';
 import SiderMenu from '@/components/SiderMenu';
-import { menu, title } from '../defaultSettings';
-
+import getPageTitle from '@/utils/getPageTitle';
 import styles from './BasicLayout.less';
-import { generalSettings } from '../../config/settings';
 
 // lazy load SettingDrawer
 const SettingDrawer = React.lazy(() => import('@/components/SettingDrawer'));
@@ -53,12 +48,6 @@ const query = {
 };
 
 class BasicLayout extends React.Component {
-  constructor(props) {
-    super(props);
-    this.getPageTitle = memoizeOne(this.getPageTitle);
-    this.matchParamsPath = memoizeOne(this.matchParamsPath, isEqual);
-  }
-
   componentDidMount() {
     const {
       dispatch,
@@ -84,11 +73,6 @@ class BasicLayout extends React.Component {
     };
   }
 
-  matchParamsPath = (pathname, breadcrumbNameMap) => {
-    const pathKey = Object.keys(breadcrumbNameMap).find(key => pathToRegexp(key).test(pathname));
-    return breadcrumbNameMap[pathKey];
-  };
-
   getRouteAuthority = (pathname, routeData) => {
     const routes = routeData.slice(); // clone
 
@@ -110,22 +94,6 @@ class BasicLayout extends React.Component {
     };
 
     return getAuthority(routes, pathname);
-  };
-
-  getPageTitle = (pathname, breadcrumbNameMap) => {
-    const currRouterData = this.matchParamsPath(pathname, breadcrumbNameMap);
-
-    if (!currRouterData) {
-      return generalSettings.appName;
-    }
-    const pageName = menu.disableLocal
-      ? currRouterData.name
-      : formatMessage({
-          id: currRouterData.locale || currRouterData.name,
-          defaultMessage: currRouterData.name,
-        });
-
-    return `${pageName} - ${generalSettings.appName}`;
   };
 
   getLayoutStyle = () => {
@@ -207,7 +175,7 @@ class BasicLayout extends React.Component {
     );
     return (
       <React.Fragment>
-        <DocumentTitle title={this.getPageTitle(pathname, breadcrumbNameMap)}>
+        <DocumentTitle title={getPageTitle(pathname, breadcrumbNameMap)}>
           <ContainerQuery query={query}>
             {params => (
               <Context.Provider value={this.getContext()}>
