@@ -30,7 +30,7 @@ export const pageFooterLinks = [
 export const generalSettings = {
   homePage: '/system/dictionary',
   appName: 'Alps Front-end Development Framework',
-  appShortName: 'ALPS',
+  appShortName: 'Cycling Cap',
   appDescription: 'Alps Front-end Development Framework',
   appCode: 'alps',
   companyName: 'ALPS Studio',
