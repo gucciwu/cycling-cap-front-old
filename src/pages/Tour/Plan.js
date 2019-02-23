@@ -14,7 +14,10 @@ import styles from './style.less';
 }))
 class BasicProfile extends Component {
   state = {
-    points: []
+    map: undefined,
+    points: [],
+    lines: [],
+    ridings: [],
   };
 
   componentDidMount() {
@@ -30,11 +33,12 @@ class BasicProfile extends Component {
         offset: new BMap.Size(5, 5),
       },
     });
+    this.setState({map});
+    this.createRiding();
     drawingManager.addEventListener('overlaycomplete', this.overlayComplete);
   }
 
   overlayComplete = (e) => {
-    console.log(e);
     this.appendPoint(e.overlay);
   };
 
@@ -42,7 +46,12 @@ class BasicProfile extends Component {
     const { points } = this.state;
     this.setState({
       points: points.concat(point)
-    })
+    });
+    const newPoints = this.state.points;
+    const count = newPoints.length;
+    if (count > 1) {
+      this.generateLine(points[count - 1], point);
+    }
   };
 
   removePoint = (index) => {
@@ -59,13 +68,30 @@ class BasicProfile extends Component {
 
   };
 
+  createRiding = () => {
+    const { map } = this.state;
+    const riding = new BMap.RidingRoute(map, {
+      renderOptions: {}
+    });
+    const { ridings } = this.state;
+    this.setState({
+      ridings: ridings.concat(riding)
+    });
+    return riding;
+  };
+
+  generateLine = (startPoint, endPoint) => {
+    const riding = this.createRiding();
+    riding.search(startPoint, endPoint);
+  };
+
   render() {
     const { loading } = this.props;
     const pointListRender = () => {
       const { points } = this.state;
-      console.log(points);
       return (
         <List
+          size="small"
           loading={loading}
           itemLayout="horizontal"
           dataSource={points}
