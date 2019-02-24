@@ -50,7 +50,7 @@ class BasicProfile extends Component {
     const newPoints = this.state.points;
     const count = newPoints.length;
     if (count > 1) {
-      this.generateLine(points[count - 1], point);
+      this.generateLine(newPoints[count - 2], newPoints[count - 1]);
     }
   };
 
@@ -81,8 +81,16 @@ class BasicProfile extends Component {
   };
 
   generateLine = (startPoint, endPoint) => {
+    console.log(startPoint, endPoint);
+    const { map } = this.state;
     const riding = this.createRiding();
-    riding.search(startPoint, endPoint);
+    console.log(riding);
+    riding.search(startPoint.point, endPoint.point);
+    riding.setSearchCompleteCallback(function(){
+      const pts = riding.getResults().getPlan(0).getRoute(0).getPath();
+      const polyline = new BMap.Polyline(pts, {strokeColor:"blue", strokeWeight:3, strokeOpacity:0.7, id:'polyine'});
+      map.addOverlay(polyline);
+    });
   };
 
   render() {
