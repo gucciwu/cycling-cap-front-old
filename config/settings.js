@@ -140,8 +140,9 @@ export const entitySettings = {
   defaultFields: ['id', 'modifiedBy', 'modifiedTime', 'createdBy', 'createdTime', 'deleted'],
 };
 
-export const serviceSettings = {
-  baiduAccessKey: 'fV1GGhTs7WEuLmUpHL8VU4rwkRwkxz80',
+export const accessKeys = {
+  baidu: 'fV1GGhTs7WEuLmUpHL8VU4rwkRwkxz80',
+  google: 'AIzaSyAQMvKxsqPIrSIv8KLdE-T2xkVah-CoXio'
 };
 
 export const fakeUser = {
