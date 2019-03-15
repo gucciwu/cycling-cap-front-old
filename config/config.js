@@ -7,7 +7,7 @@ import slash from 'slash2';
 import { languageSettings } from './settings';
 
 const { pwa, primaryColor } = defaultSettings;
-const { NODE_ENV, APP_TYPE, TEST } = process.env;
+const { APP_TYPE, TEST } = process.env;
 
 const plugins = [
   [
@@ -77,10 +77,8 @@ export default {
     'primary-color': primaryColor,
   },
   externals: {
-    '@antv/data-set': 'DataSet',
-    'BMap':'BMap', // Baidu map instance
-    'BMapLib':'BMapLib',
-    bizcharts: 'BizCharts',
+    BMap: 'BMap', // Baidu map instance
+    BMapLib: 'BMapLib',
   },
   // proxy: {
   //   '/server/api/': {
