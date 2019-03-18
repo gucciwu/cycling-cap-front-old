@@ -34,7 +34,7 @@ const plugins = [
               importWorkboxFrom: 'local',
             },
           }
-        : {},
+        : false,
       ...(!TEST && os.platform() === 'darwin'
         ? {
             dll: {
