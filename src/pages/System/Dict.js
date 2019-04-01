@@ -46,15 +46,7 @@ export class DictionaryEntity extends Entity {
 }))
 class Dictionaries extends React.Component {
   render() {
-    const {
-      dictionary,
-      fetching,
-      listing,
-      deleting,
-      creating,
-      updating,
-      dispatch,
-    } = this.props;
+    const { dictionary, fetching, listing, deleting, creating, updating, dispatch } = this.props;
     return (
       <RestCrud
         dispatch={dispatch}
@@ -71,4 +63,4 @@ class Dictionaries extends React.Component {
   }
 }
 
-export default Dictionaries
+export default Dictionaries;
